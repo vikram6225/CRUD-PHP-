@@ -22,7 +22,7 @@ include 'connect.php';
   <table class="table">
   <thead>
     <tr>
-      <th scope="col">S.no</th>
+      <th scope="col">Id</th>
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Functions</th>
@@ -34,10 +34,13 @@ include 'connect.php';
   <?php
    $sql="SELECT * FROM `blog`";
    $result=mysqli_query($conn,$sql);
+   $id = 1;
    if($result){
-    $id = 1;
+   
    while( $row=mysqli_fetch_assoc($result)){
+  
     $id=$row['id'];
+ 
     $title=$row['title'];
     $description=$row['description'];
     echo '
@@ -46,13 +49,14 @@ include 'connect.php';
           <td>'.$title.'</td>
           <td>'.$description.'</td>
           <td>
-          <button class="btn btn-primary"><a href="update.php?updateid='.$id.'" class="text-light">Update</a></button>
+          <button class="btn btn-primary"><a href="update.php?updateid='.$id.'" class="text-light">Edit</a></button>
           <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'" class="text-light">Delete</a></button>
         </td>
           
         </tr>';
-   $id++;
+        $id++;
    }
+
    }
 
 
