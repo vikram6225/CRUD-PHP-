@@ -10,7 +10,7 @@ include 'connect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- Bootstrap CSS -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="//cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css">
+     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css" />
 
 
 
@@ -28,6 +28,7 @@ include 'connect.php';
       <th scope="col">Id</th>
       <th scope="col">Title</th>
       <th scope="col">Description</th>
+      <th scope="col">category</th>
       <th scope="col">Actions</th>
 
     </tr>
@@ -38,20 +39,22 @@ include 'connect.php';
   <?php
    $sql="SELECT * FROM `blog`";
    $result=mysqli_query($conn,$sql);
-
+    $id=0;
    if($result){
    
    while( $row=mysqli_fetch_assoc($result)){
-  
+    $id+=1;
     $id=$row['id'];
     $title=$row['title'];
     $description=$row['description'];
+    $category=$row['category'];
 
     echo '
     <tr>
           <th scope="row">'.$id.'</th>
           <td>'.$title.'</td>
           <td>'.$description.'</td>
+          <td>'.$category.'</td>
           <td>
           <button class="btn btn-primary"><a href="update.php?updateid='.$id.'" class="text-light">Edit</a></button>
           <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'" class="text-light">Delete</a></button>
@@ -79,11 +82,14 @@ include 'connect.php';
 
 
   <script src="https://code.jquery.com/jquery-3.7.1.js"integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
-  <script src="//cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
-  <script>$(document).ready( function () {
+  <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+  <script>
+  $(document).ready( function () {
     $('#myTable').DataTable();
 } );</script>
- 
+
+
+
 
    
     

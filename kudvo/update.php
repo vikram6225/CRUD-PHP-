@@ -9,12 +9,14 @@
      $row=mysqli_fetch_assoc($result);
      $title=$row['title'];
      $description=$row['description'];
+     $category=$row['category'];
 
    if(isset($_POST['submit'])){
          $title=$_POST['title'];
          $description=$_POST['description'];
+         $category=$_POST['category'];
 
-         $sql = "UPDATE `blog` SET id='$id',title='$title',description='$description' WHERE id='$id'";
+         $sql = "UPDATE `blog` SET id='$id',title='$title',description='$description',category='$category' WHERE id='$id'";
 
 
          $result=mysqli_query($conn,$sql);
@@ -59,6 +61,10 @@
             <div class="mb-3">
                 <label>Description</label>
                 <input type="text" class="form-control" placeholder="enter desc" name="description" autocomplete="off" value=<?php echo $description; ?>>
+            </div>
+            <div class="mb-3">
+                <label>category</label>
+                <input type="text" class="form-control" placeholder="enter desc" name="category" autocomplete="off" value=<?php echo $category; ?>>
             </div>
             
 

@@ -4,8 +4,9 @@
    if(isset($_POST['submit'])){
          $title=$_POST['title'];
          $description=$_POST['description'];
+         $category=$_POST['category'];
 
-         $sql = "INSERT INTO `blog` (title, description) VALUES ('$title', '$description')";
+         $sql = "INSERT INTO `blog` (title, description, category) VALUES ('$title', '$description', '$category')";
 
 
          $result=mysqli_query($conn,$sql);
@@ -50,6 +51,10 @@
             <div class="mb-3">
                 <label>Description</label>
                 <input type="text" class="form-control" placeholder="enter desc" name="description" autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label>Category</label>
+                <input type="text" class="form-control" placeholder="enter category" name="category" autocomplete="off">
             </div>
             
 
