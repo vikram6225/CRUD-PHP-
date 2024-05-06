@@ -18,10 +18,20 @@ include 'connect.php';
 </head>
 <body>
 
+
   <div class="container">
     <button class="btn btn-primary my-5"><a href="user.php" class="text-light">Add item</a></button>
 
-  
+    <form action="" method="GET">
+    <div class="input-group mb-3">
+  <input type="text" class="form-control" name="search" placeholder="search"  >
+    <button type="submit" class="btn btn-primary" value="<?php if(isset($_GET['search'])){
+      echo $_GET['search'];
+    }?>" >search</button>
+</div>
+
+
+
   <table class="table" id="myTable">
   <thead>
     <tr>
@@ -30,8 +40,7 @@ include 'connect.php';
       <th scope="col">Description</th>
       <th scope="col">category</th>
       <th scope="col">Actions</th>
-
-    </tr>
+ </tr>
   </thead>
   <tbody>
 
@@ -39,11 +48,11 @@ include 'connect.php';
   <?php
    $sql="SELECT * FROM `blog`";
    $result=mysqli_query($conn,$sql);
-    $id=0;
+   
    if($result){
    
    while( $row=mysqli_fetch_assoc($result)){
-    $id+=1;
+   
     $id=$row['id'];
     $title=$row['title'];
     $description=$row['description'];
@@ -60,13 +69,10 @@ include 'connect.php';
           <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'" class="text-light">Delete</a></button>
         </td>
           
-        </tr>';
-        
-      
-   }
+    </tr>'; 
+   
+   }}
 
-   }
-  
 
 
   ?>
@@ -77,11 +83,12 @@ include 'connect.php';
 </table>
 
 </div>
+
 <hr>
 
 
 
-  <script src="https://code.jquery.com/jquery-3.7.1.js"integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
+ <script src="https://code.jquery.com/jquery-3.7.1.js"integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
   <script>
   $(document).ready( function () {
