@@ -34,15 +34,16 @@ include 'connect.php';
   <?php
    $sql="SELECT * FROM `blog`";
    $result=mysqli_query($conn,$sql);
-   $id = 1;
+
    if($result){
    
    while( $row=mysqli_fetch_assoc($result)){
   
     $id=$row['id'];
- 
+   
     $title=$row['title'];
     $description=$row['description'];
+
     echo '
     <tr>
           <th scope="row">'.$id.'</th>
@@ -54,7 +55,7 @@ include 'connect.php';
         </td>
           
         </tr>';
-        $id++;
+      
    }
 
    }
