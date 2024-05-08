@@ -50,7 +50,7 @@ if ($results) {
     <form method="GET" class="row align-items-end">
         <div class="col-md-6">
             <select id="category" class="form-select" name="status" >
-                <option value="" >Show Categories</option>
+                <option value="" >All Categories</option>
                 <?php foreach ($category as $categories): ?>
                 <option value="<?= $categories?>" <?php if(isset($_GET['status']) && $_GET['status'] == $categories) echo 'selected'; ?>>
                         <?= $categories ?>
