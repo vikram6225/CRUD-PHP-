@@ -63,6 +63,7 @@
             <div class="mb-3">
                 <label>category</label>
                 <input type="text" class="form-control" placeholder="enter desc" name="category" autocomplete="off" value=<?php echo $category; ?>>
+                 
             </div>
             
 
