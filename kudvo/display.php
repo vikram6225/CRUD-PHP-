@@ -40,28 +40,33 @@ if ($results) {
                 </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn btn-primary">Search</button>
-                    <button class="btn btn-danger">Clear</button>
+                    <button class="btn btn-danger"><a href="display.php"  class="text-light text-decoration-none">Clear</a></button>
                 </div>
             </div>
         </form>
     </div>
 
     <div class="container mt-5">
-    <form method="POST" class="row align-items-end">
+    <form method="GET" class="row align-items-end">
         <div class="col-md-6">
-            <select id="category" class="form-select" name="status">
-                <option value="">Show Categories</option>
+            <select id="category" class="form-select" name="status" >
+                <option value="" >Show Categories</option>
                 <?php foreach ($category as $categories): ?>
-                    <option value="<?= $categories ?>"><?= $categories ?></option>
-                <?php endforeach; ?>
+                <option value="<?= $categories?>" <?php if(isset($_GET['status']) && $_GET['status'] == $categories) echo 'selected'; ?>>
+                        <?= $categories ?>
+                    </option>
+                    <?php endforeach; ?>
+                  
+               
             </select>
         </div>
         <div class="col-md-4">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button  class="btn btn-danger">Reset</button>
+            <button   class="btn btn-danger"><a href="display.php"  class="text-light text-decoration-none">Reset</a></button>
         </div>
     </form>
 </div>
+
 <br>
 
     <div class="container">
@@ -82,13 +87,17 @@ if ($results) {
                     $search = $_POST['search'];
                     $sql = "SELECT * FROM `blog` WHERE title LIKE '%$search%' OR description LIKE '%$search%' OR category LIKE '%$search%'";
                 }
-                elseif (isset($_POST['status']) && !empty($_POST['status'])) {
-                    $status = ($_POST['status']);
+                elseif (isset($_GET['status']) && !empty($_GET['status'])) {
+                    $status = ($_GET['status']);
                     $sql = "SELECT * FROM `blog` WHERE category = '$status'";
+
+                   
+                   
                 }
                 $result = mysqli_query($conn, $sql);
+                $id =0;
                 if($result) {
-                    $id = 1;
+                    $id += 1;
                     while($row = mysqli_fetch_assoc($result)) {
                         $id = $row['id'];
                         $title = $row['title'];
@@ -101,8 +110,8 @@ if ($results) {
                             <td>'.$description.'</td>
                             <td>'.$category.'</td>
                             <td>
-                                <button class="btn btn-primary"><a href="update.php?updateid='.$id.'" class="text-light">Edit</a></button>
-                                <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'" class="text-light">Delete</a></button>
+                                <button class="btn btn-primary"><a href="update.php?updateid='.$id.'" class="text-light text-decoration-none">Edit</a></button>
+                                <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'" class="text-light text-decoration-none">Delete</a></button>
                             </td>
                         </tr>'; 
                     }
@@ -117,7 +126,9 @@ if ($results) {
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable();
-        });
+        }); 
     </script>
+    
+
 </body>
 </html>
