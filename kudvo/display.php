@@ -14,7 +14,7 @@ if ($results) {
 } 
 
 
-$records_per_page =5;
+$records_per_page = isset($_GET['recordsPerPage']) ? $_GET['recordsPerPage'] : 5;
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($current_page - 1) * $records_per_page;
  //Count total number of records
@@ -85,20 +85,18 @@ $total_pages = ceil($total_records / $records_per_page);
         </form>
     </div>
     <br>
-     <!-- 
-    <div class="container mt-5">
-    <form method="GET" action="">
-    <label for="recordsPerPage">Records Per Page:</label>
-    <select name="recordsPerPage" id="recordsPerPage">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-    </select>
-    <input type="submit" class="btn btn-outline-dark btn-sm" value="Apply">
-   
-</form>
-    </div> -->
+    <div class="container mt-5"> 
+    <form method="GET" action=""> 
+        <label for="recordsPerPage">Records Per Page:</label> 
+        <select name="recordsPerPage" id="recordsPerPage" onchange="this.form.submit()"> 
+            <option value="5" <?php if(isset($_GET['recordsPerPage']) && $_GET['recordsPerPage'] == '5') echo 'selected'; ?>>5</option> 
+            <option value="10" <?php if(isset($_GET['recordsPerPage']) && $_GET['recordsPerPage'] == '10') echo 'selected'; ?>>10</option> 
+            <option value="20" <?php if(isset($_GET['recordsPerPage']) && $_GET['recordsPerPage'] == '20') echo 'selected'; ?>>20</option> 
+            <option value="50" <?php if(isset($_GET['recordsPerPage']) && $_GET['recordsPerPage'] == '50') echo 'selected'; ?>>50</option> 
+            <option value="100" <?php if(isset($_GET['recordsPerPage']) && $_GET['recordsPerPage'] == '100') echo 'selected'; ?>>100</option> 
+        </select> 
+    </form> 
+</div>
 
     <!-- Table -->
     <div class="container">
